@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
+import { postSmurf } from "../action/action";
 
 const SmurfForm = props => {
   const [newSmurf, setNewSmurf] = useState({
@@ -8,16 +11,16 @@ const SmurfForm = props => {
     id: ""
   });
 
-  const changeHandle = () => {
+  const handleChange = e => {
     setNewSmurf({ ...newSmurf, [e.target.name]: e.target.value });
   };
 
   const submitForm = e => {
     e.preventDefault();
-    postSmurf(newSmurf);
+    props.postSmurf(newSmurf);
   };
 
-  retrun(
+  return (
     <div>
       <form>
         <label>
@@ -26,8 +29,8 @@ const SmurfForm = props => {
             name="name"
             id=""
             type="text"
-            onChange={changeHandle}
-            value={newSmurf.name}
+            onChange={handleChange}
+            value={props.name}
           />
         </label>
         <label>
@@ -36,8 +39,8 @@ const SmurfForm = props => {
             name="age"
             id=""
             type="text"
-            onChange={changeHandle}
-            value={newSmurf.age}
+            onChange={handleChange}
+            value={props.age}
           />
         </label>
         <label>
@@ -46,11 +49,16 @@ const SmurfForm = props => {
             name="height"
             id=""
             type="text"
-            onChange={changeHandle}
+            onChange={handleChange}
             value={newSmurf.height}
           />
         </label>
+        <button type="submit" onClick={submitForm}>
+          SUBMIT
+        </button>
       </form>
     </div>
   );
 };
+
+export default connect(null, { postSmurf })(SmurfForm);
