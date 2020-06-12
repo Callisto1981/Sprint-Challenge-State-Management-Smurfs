@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { getSmurf } from "../action/action";
 
-const SmurfList = smurf => {
+const SmurfList = props => {
   return (
     <div>
-      <button onClick={smurf => smurf.getSmurf()}>GET SMURFS</button>
-      {smurf.smurf.map(smurf => (
+      <button onClick={() => props.getSmurf()}>GET SMURFS</button>
+      {props.smurf.map(smurf => (
         <div key={smurf.id}>
           <h1>Name: {smurf.name}</h1>
           <p>Age: {smurf.age}</p>
