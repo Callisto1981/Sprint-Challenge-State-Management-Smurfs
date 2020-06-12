@@ -1,16 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 
+const SmurfForm = props => {
+  const [newSmurf, setNewSmurf] = useState({
+    name: "",
+    age: "",
+    height: "",
+    id: ""
+  });
 
-export const SmurfForm = () => {
-    
+  const changeHandle = () => {
+    setNewSmurf({ ...newSmurf, [e.target.name]: e.target.value });
+  };
 
-    return(
-        <div>
-            <form>
-                <input type="text" name="smurf-form" value={}>
-                    <button>ADD SMURF</button>
-            </form>
-        </div>
-    
-    )
-}
+  const submitForm = e => {
+    e.preventDefault();
+    postSmurf(newSmurf);
+  };
+
+  retrun(
+    <div>
+      <form>
+        <label>
+          Name:
+          <input
+            name="name"
+            id=""
+            type="text"
+            onChange={changeHandle}
+            value={newSmurf.name}
+          />
+        </label>
+        <label>
+          Age:
+          <input
+            name="age"
+            id=""
+            type="text"
+            onChange={changeHandle}
+            value={newSmurf.age}
+          />
+        </label>
+        <label>
+          Height:
+          <input
+            name="height"
+            id=""
+            type="text"
+            onChange={changeHandle}
+            value={newSmurf.height}
+          />
+        </label>
+      </form>
+    </div>
+  );
+};
